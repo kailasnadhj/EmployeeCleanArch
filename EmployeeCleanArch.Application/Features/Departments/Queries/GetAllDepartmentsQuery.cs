@@ -1,12 +1,14 @@
 ﻿using MediatR;
 using EmployeeCleanArch.Domain.Entities;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
+using EmployeeCleanArch.Application.Common.APIResponse;
+using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Queries
 {
-    public record GetAllDepartmentsQuery() : IRequest<IEnumerable<Department>>;
+    public record GetAllDepartmentsQuery() : IRequest<APIResponse<IEnumerable<Department>>>;
 
-    public class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQuery, IEnumerable<Department>>
+    public class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQuery, APIResponse<IEnumerable<Department>>>
     {
         private readonly IGenericRepository<Department> _repository;
 
@@ -15,9 +17,17 @@ namespace EmployeeCleanArch.Application.Features.Departments.Queries
             _repository = repository;
         }
 
-        public async Task<IEnumerable<Department>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
+        public async Task<APIResponse<IEnumerable<Department>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllAsync();
+
+                var departments = await _repository.GetAllAsync();
+
+                if (departments != null && departments.Any())
+                {
+                    return APIResponse<IEnumerable<Department>>.Success(departments, "Departments fetched successfully.");
+                }
+
+                return APIResponse<IEnumerable<Department>>.Failure("No departments found.", HttpStatusCode.NotFound);
         }
     }
 }

@@ -1,26 +1,39 @@
-﻿using EmployeeCleanArch.Application.DTOs;
+﻿using EmployeeCleanArch.Application.Common.APIResponse;
+using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using FluentValidation;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Commands
 {
-    public record AddNewDepartmentCommand(CreateDepartmentDTO departmentDTO) : IRequest<Department>;
+    public record AddNewDepartmentCommand(CreateDepartmentDTO departmentDTO) : IRequest<APIResponse<Department>>;
 
-    public class AddNewDepartmentCommandHandler : IRequestHandler<AddNewDepartmentCommand, Department>
+    public class AddNewDepartmentCommandHandler : IRequestHandler<AddNewDepartmentCommand, APIResponse<Department>>
     {
         private readonly IGenericRepository<Department> _repository;
+        private readonly IValidator<CreateDepartmentDTO> _validator;
 
-        public AddNewDepartmentCommandHandler(IGenericRepository<Department> repository)
+        public AddNewDepartmentCommandHandler(IGenericRepository<Department> repository,IValidator<CreateDepartmentDTO> validator)
         {
             _repository = repository;
+            _validator = validator;
         }
 
-        public async Task<Department> Handle(AddNewDepartmentCommand request, CancellationToken cancellationToken)
+        public async Task<APIResponse<Department>> Handle(AddNewDepartmentCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request.departmentDTO);
+
+            if (!validationResult.IsValid)
+            {
+                return APIResponse<Department>.Failure(
+                    string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)),
+                    System.Net.HttpStatusCode.BadRequest
+                );
+            }
+
             var departmentEntity = new Department
             {
                 DepartmentName = request.departmentDTO.DepartmentName,
@@ -31,7 +44,8 @@ namespace EmployeeCleanArch.Application.Features.Departments.Commands
                 CreatedDate = DateTime.Now
             };
 
-            return await _repository.AddAsync(departmentEntity);
+            await _repository.AddAsync(departmentEntity);
+            return APIResponse<Department>.Success(departmentEntity, "Department fetched successfully.");
         }
     }
 }

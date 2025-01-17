@@ -35,11 +35,34 @@ namespace EmployeeCleanArch.WebAPI.Controllers
         {
 
             var result = await _sender.Send(new AddNewDepartmentCommand(departmentDto));
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("ViewById/{id}")]
+        public async Task<IActionResult> GetDepartmentByIdAsync(long id)
+        {
+            var result = await _sender.Send(new GetDepartmentByIdQuery(id));
             if (result != null)
             {
                 return Ok(result);
             }
-            return BadRequest("Department not created");
+            return NotFound();
+        }
+
+        [HttpPut("Update/{id}")]
+        public async Task<IActionResult> UpdateDepartmentByIdAsync([FromBody] UpdateDepartmentDTO departmentDto,int id)
+        {
+
+            var result = await _sender.Send(new UpdateDepartmentCommand(departmentDto,id));
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
