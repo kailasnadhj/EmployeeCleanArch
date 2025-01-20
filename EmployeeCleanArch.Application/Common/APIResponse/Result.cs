@@ -28,16 +28,6 @@ namespace EmployeeCleanArch.Application.Common.APIResponse
         {
             return new ErrorResponse<T>(default, statusCode, message);
         }
-
-        public static Task<APIResponse<T>> SuccessAsync(T data, string message = "Request succeeded")
-        {
-            return Task.FromResult(Success(data, message));
-        }
-
-        public static Task<APIResponse<T>> FailureAsync(string message, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
-        {
-            return Task.FromResult(Failure(message, statusCode));
-        }
     }
 
     public class SuccessResponse<T> : APIResponse<T>
@@ -46,6 +36,8 @@ namespace EmployeeCleanArch.Application.Common.APIResponse
             : base(true, data, statusCode, message) { }
     }
 
+    // Data is not necessary in error
+    
     public class ErrorResponse<T> : APIResponse<T>
     {
         public ErrorResponse(T data, HttpStatusCode statusCode, string message)

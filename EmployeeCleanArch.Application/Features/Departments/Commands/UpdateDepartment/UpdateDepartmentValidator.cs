@@ -1,7 +1,6 @@
-﻿using EmployeeCleanArch.Application.DTOs;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace EmployeeCleanArch.Application.Features.Departments.Commands
+namespace EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment
 {
     public class UpdateDepartmentValidator : AbstractValidator<UpdateDepartmentCommand>
     {

@@ -4,7 +4,7 @@ using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Application.Common.APIResponse;
 using System.Net;
 
-namespace EmployeeCleanArch.Application.Features.Departments.Queries
+namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmrntById
 {
     public record GetDepartmentByIdQuery(long id) : IRequest<APIResponse<Department>>;
 
@@ -20,7 +20,7 @@ namespace EmployeeCleanArch.Application.Features.Departments.Queries
         public async Task<APIResponse<Department>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
             var departmentData = await _repository.GetByIdAsync(request.id);
-            if (departmentData != null) 
+            if (departmentData != null)
             {
                 return APIResponse<Department>.Success(departmentData, "Department fetched successfully.");
             }

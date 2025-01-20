@@ -1,9 +1,10 @@
 ﻿using EmployeeCleanArch.Application.DTOs;
-using EmployeeCleanArch.Application.Features.Departments.Commands;
-using EmployeeCleanArch.Application.Features.Departments.Queries;
-using MapsterMapper;
+using EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartment;
+using EmployeeCleanArch.Application.Features.Departments.Commands.DeleteDepartment;
+using EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment;
+using EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments;
+using EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmrntById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeCleanArch.WebAPI.Controllers
@@ -20,14 +21,15 @@ namespace EmployeeCleanArch.WebAPI.Controllers
         }
 
         [HttpGet("ViewAll")]
+        //We have a format
         public async Task<IActionResult> GetAllDepartmentsAsync()
         {
             var result = await _sender.Send(new GetAllDepartmentsQuery());
-            if (result != null)
+            if (result == null)
             {
-                return Ok(result);
+                return NotFound();
             }
-            return NotFound();
+            return Ok(result);
         }
 
         [HttpPost("Add")]
@@ -58,11 +60,23 @@ namespace EmployeeCleanArch.WebAPI.Controllers
         {
 
             var result = await _sender.Send(new UpdateDepartmentCommand(departmentDto,id));
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
             {
-                return Ok(result);
+                return BadRequest(result);
             }
-            return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteDepartmentByIdAsync(int id)
+        {
+
+            var result = await _sender.Send(new DeleteDepartmentCommand(id));
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using EmployeeCleanArch.Application.DTOs;
 using FluentValidation;
 
-namespace EmployeeCleanArch.Application.Features.Departments.Commands
+namespace EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartment
 {
     public class AddNewDepartmentValidator : AbstractValidator<CreateDepartmentDTO>
     {

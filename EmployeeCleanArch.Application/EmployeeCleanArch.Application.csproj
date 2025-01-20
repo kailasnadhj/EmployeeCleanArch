@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Common\Mappings\" />
     <Folder Include="Extensions\" />
     <Folder Include="Features\Employees\Commands\" />
     <Folder Include="Features\Employees\Queries\" />
