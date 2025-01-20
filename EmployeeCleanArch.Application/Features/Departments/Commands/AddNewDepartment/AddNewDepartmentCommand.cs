@@ -26,13 +26,6 @@ namespace EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepa
         {
             await _validator.ValidateAndThrowAsync(request.departmentDTO);
 
-            /*if (!validationResult.IsValid)
-            {
-                return APIResponse<Department>.Failure(
-                    string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)),
-                    System.Net.HttpStatusCode.BadRequest
-                );
-            }*/
             var departmentEntity = request.departmentDTO.Adapt<Department>();
             departmentEntity.CreatedDate = DateTime.Now;
 

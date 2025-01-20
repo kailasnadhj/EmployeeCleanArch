@@ -4,7 +4,7 @@ using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Application.Common.APIResponse;
 using System.Net;
 
-namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmrntById
+namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmentById
 {
     public record GetDepartmentByIdQuery(long id) : IRequest<APIResponse<Department>>;
 

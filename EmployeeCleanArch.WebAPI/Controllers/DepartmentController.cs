@@ -3,7 +3,7 @@ using EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartme
 using EmployeeCleanArch.Application.Features.Departments.Commands.DeleteDepartment;
 using EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment;
 using EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments;
-using EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmrntById;
+using EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmentById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
