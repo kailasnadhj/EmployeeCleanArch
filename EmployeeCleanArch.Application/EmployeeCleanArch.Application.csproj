@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Features\Employees\Commands\DeleteEmployee\" />
     <Folder Include="Features\Employees\Queries\GetEmployeeByDepartment\" />
   </ItemGroup>
 
