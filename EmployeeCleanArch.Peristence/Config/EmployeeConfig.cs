@@ -29,7 +29,7 @@ namespace EmployeeCleanArch.Infrastructure.Persistence.Configurations
                 .IsRequired();
 
             builder.Property(e => e.Gender)
-                .HasMaxLength(50);
+                .HasConversion<int>();
 
             builder.Property(e => e.Nationality)
                 .HasMaxLength(50);

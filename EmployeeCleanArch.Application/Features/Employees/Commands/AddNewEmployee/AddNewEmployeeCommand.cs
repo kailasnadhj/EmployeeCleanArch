@@ -2,9 +2,11 @@
 using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
+using EmployeeCleanArch.Domain.Enums;
 using FluentValidation;
 using Mapster;
 using MediatR;
+using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.AddNewEmployee
 {
@@ -26,6 +28,12 @@ namespace EmployeeCleanArch.Application.Features.Employees.Commands.AddNewEmploy
             await _validator.ValidateAndThrowAsync(request.employeeDTO);
 
             var employeeEntity = request.employeeDTO.Adapt<Employee>();
+            if (!Enum.TryParse<Genders>(request.employeeDTO.Gender, true, out var genderEnum))
+            {
+                return APIResponse<Employee>.Failure("Invalid gender value. Must be 'male', 'female', or 'other'.",HttpStatusCode.BadRequest);
+            }
+
+            employeeEntity.Gender = genderEnum;
             employeeEntity.CreatedDate = DateTime.Now;
 
             await _repository.AddAsync(employeeEntity);
