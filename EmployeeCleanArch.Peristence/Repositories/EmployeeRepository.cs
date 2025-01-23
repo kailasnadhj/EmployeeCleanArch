@@ -14,7 +14,7 @@ namespace EmployeeCleanArch.Peristence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<List<Employee>> GetEmployeesByDepartmentAsync(int departmentId)
+        public async Task<List<Employee>> GetEmployeesByDepartmentAsync(long departmentId)
         {
             var employees = await _dbContext.Employees
                 .Where(e => e.DepartmentId == departmentId)  

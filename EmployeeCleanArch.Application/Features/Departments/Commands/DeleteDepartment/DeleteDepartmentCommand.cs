@@ -31,8 +31,10 @@ namespace EmployeeCleanArch.Application.Features.Departments.Commands.DeleteDepa
                 return APIResponse<Department>.Failure("Department of the specified ID found.", HttpStatusCode.NotFound);
 
             }
+            departmentEntity.IsDeleted = true;
+            departmentEntity.UpdatedDate = DateTime.UtcNow;
 
-            await _repository.DeleteAsync(departmentEntity);
+            await _repository.UpdateAsync(departmentEntity);
             return APIResponse<Department>.Success(departmentEntity, "Department deleted successfully.");
         }
     }

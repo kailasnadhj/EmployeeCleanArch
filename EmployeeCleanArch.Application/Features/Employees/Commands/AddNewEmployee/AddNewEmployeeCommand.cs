@@ -29,7 +29,7 @@ namespace EmployeeCleanArch.Application.Features.Employees.Commands.AddNewEmploy
             employeeEntity.CreatedDate = DateTime.Now;
 
             await _repository.AddAsync(employeeEntity);
-            return APIResponse<Employee>.Success(employeeEntity, "Department created successfully.");
+            return APIResponse<Employee>.Success(employeeEntity, "Employee created successfully.");
         }
     }
 }

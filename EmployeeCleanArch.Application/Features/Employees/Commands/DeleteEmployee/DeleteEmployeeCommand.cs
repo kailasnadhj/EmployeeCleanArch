@@ -3,12 +3,7 @@ using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using FluentValidation;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.DeleteEmployee
 {
@@ -33,12 +28,15 @@ namespace EmployeeCleanArch.Application.Features.Employees.Commands.DeleteEmploy
 
             if (employeeEntity == null)
             {
-                return APIResponse<Employee>.Failure("Department of the specified ID found.", HttpStatusCode.NotFound);
+                return APIResponse<Employee>.Failure("Employee of the specified ID not found.", HttpStatusCode.NotFound);
 
             }
 
-            await _repository.DeleteAsync(employeeEntity);
-            return APIResponse<Employee>.Success(employeeEntity, "Department deleted successfully.");
+            employeeEntity.IsDeleted = true;
+            employeeEntity.UpdatedDate = DateTime.UtcNow;
+
+            await _repository.UpdateAsync(employeeEntity);
+            return APIResponse<Employee>.Success(employeeEntity, "Employee deleted successfully.");
         }
     }
 }

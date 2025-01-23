@@ -1,11 +1,6 @@
 ﻿using EmployeeCleanArch.Application.Interfaces;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeCleanArch.Application.Services
 {
@@ -26,7 +21,8 @@ namespace EmployeeCleanArch.Application.Services
 
         public Task<List<Department>> GetAllDepartmentsAsync()
         {
-            return _repository.GetAllAsync();
+            throw new NotImplementedException();
+
         }
 
         public Task<Department> GetDepartmentByIdAsync(long id)

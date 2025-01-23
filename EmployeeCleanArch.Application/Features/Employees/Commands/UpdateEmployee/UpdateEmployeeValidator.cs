@@ -1,10 +1,4 @@
-﻿using EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.UpdateEmployee
 {

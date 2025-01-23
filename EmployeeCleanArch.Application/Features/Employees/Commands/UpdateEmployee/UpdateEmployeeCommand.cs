@@ -3,14 +3,9 @@ using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using FluentValidation;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using Mapster;
-using System.Threading.Tasks;
+using MediatR;
+using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.UpdateEmployee
 {

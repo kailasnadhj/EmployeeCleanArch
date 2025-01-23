@@ -24,17 +24,11 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<AddNewDepartmentValidator>();
-//builder.Services.AddTransient<IValidator<CreateDepartmentDTO>, AddNewDepartmentValidator>();
 
 
-
-//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddMediatR(cfg => 
     cfg.RegisterServicesFromAssembly(typeof(GetAllDepartmentsQueryHandler).Assembly));
-/*builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartmentCommandHandler).Assembly));
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmentByIdQueryHandler).Assembly));*/
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

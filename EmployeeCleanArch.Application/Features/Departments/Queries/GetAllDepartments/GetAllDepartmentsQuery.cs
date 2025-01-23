@@ -3,6 +3,7 @@ using EmployeeCleanArch.Domain.Entities;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Application.Common.APIResponse;
 using System.Net;
+using EmployeeCleanArch.Domain.Specifications;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments
 {
@@ -20,7 +21,9 @@ namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepar
         public async Task<APIResponse<IEnumerable<Department>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
         {
 
-            var departments = await _repository.GetAllAsync();
+            var spec = new IsDeletedSpecification<Department>();
+
+            var departments = await _repository.GetAllAsync(spec, cancellationToken);
 
             if (departments != null && departments.Any())
             {

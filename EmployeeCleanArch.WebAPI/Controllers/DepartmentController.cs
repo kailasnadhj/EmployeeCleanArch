@@ -1,6 +1,7 @@
 ﻿using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartment;
 using EmployeeCleanArch.Application.Features.Departments.Commands.DeleteDepartment;
+using EmployeeCleanArch.Application.Features.Departments.Commands.PurgeDepartment;
 using EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment;
 using EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments;
 using EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmentById;
@@ -32,6 +33,17 @@ namespace EmployeeCleanArch.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("ViewById/{id}")]
+        public async Task<IActionResult> GetDepartmentByIdAsync(long id)
+        {
+            var result = await _sender.Send(new GetDepartmentByIdQuery(id));
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+
         [HttpPost("Add")]
         public async Task<IActionResult> AddDepartmentAsync([FromBody] CreateDepartmentDTO departmentDto)
         {
@@ -42,17 +54,6 @@ namespace EmployeeCleanArch.WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }
-
-        [HttpGet("ViewById/{id}")]
-        public async Task<IActionResult> GetDepartmentByIdAsync(long id)
-        {
-            var result = await _sender.Send(new GetDepartmentByIdQuery(id));
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            return NotFound();
         }
 
         [HttpPut("Update/{id}")]
@@ -72,6 +73,18 @@ namespace EmployeeCleanArch.WebAPI.Controllers
         {
 
             var result = await _sender.Send(new DeleteDepartmentCommand(id));
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpDelete("Purge/{id}")]
+        public async Task<IActionResult> PurgeDepartmentByIdAsync(int id)
+        {
+
+            var result = await _sender.Send(new PurgeDepartmentCommand(id));
             if (!result.IsSuccess)
             {
                 return BadRequest(result);

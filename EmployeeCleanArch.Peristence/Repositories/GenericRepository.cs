@@ -1,7 +1,9 @@
-﻿using EmployeeCleanArch.Application.Interfaces.Repositories;
-using EmployeeCleanArch.Domain.Common.Interfaces;
+﻿using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
+using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace EmployeeCleanArch.Peristence.Repositories
 {
@@ -9,7 +11,7 @@ namespace EmployeeCleanArch.Peristence.Repositories
     {
         private readonly AppDbContext _dbcontext;
         private readonly DbSet<T> _dbSet;
-
+        
         public GenericRepository(AppDbContext context)
         {
             _dbcontext = context;
@@ -29,9 +31,20 @@ namespace EmployeeCleanArch.Peristence.Repositories
             await _dbcontext.SaveChangesAsync();
         }
 
-        public async Task<List<T>> GetAllAsync()
+
+        public async Task<List<T>> GetAllAsync(ISpecification<T> specification, CancellationToken cancellationToken)
         {
-            return await _dbSet.ToListAsync();
+            //var query = _dbSet.AsQueryable<T>();
+            /*query = query.ApplySpecification(specification);
+
+            return await query.ToListAsync(cancellationToken);*/
+
+            //return await query.ApplySpecification(specification).ToListAsync(cancellationToken);
+            var queryResult = SpecificationEvaluator.Default.GetQuery<T>(
+            query: _dbSet.AsQueryable(),
+            specification: specification);
+
+            return await queryResult.ToListAsync(cancellationToken);
         }
 
         public async Task<T> GetByIdAsync(long id)

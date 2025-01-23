@@ -13,8 +13,6 @@ namespace MyCleanApp.Application.Mappings
             TypeAdapterConfig<UpdateDepartmentDTO, Department>.NewConfig();
             TypeAdapterConfig<CreateEmployeeDTO, Employee>.NewConfig();
             TypeAdapterConfig<UpdateEmployeeDTO, Employee>.NewConfig();
-
-
         }
     }
 }
