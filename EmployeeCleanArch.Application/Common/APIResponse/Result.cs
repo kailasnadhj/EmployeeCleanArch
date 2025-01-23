@@ -1,43 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace EmployeeCleanArch.Application.Common.APIResponse
 {
-    public class Result<T>
+    public abstract class APIResponse<T>
     {
-        public bool IsSuccess { get; private set; }
-        public T Data { get; private set; }
-        public string Message { get; private set; }
+        public bool IsSuccess { get; protected set; }
+        public HttpStatusCode StatusCode { get; protected set; }
+        public T Data { get; protected set; }
+        public string Message { get; protected set; }
 
-        private Result(bool isSuccess, T data, string message)
+        protected APIResponse(bool isSuccess, T data, HttpStatusCode statusCode, string message)
         {
             IsSuccess = isSuccess;
             Data = data;
+            StatusCode = statusCode;
             Message = message;
         }
 
-        public static Result<T> Success(T data, string message)
+        public static APIResponse<T> Success(T data, string message = "Request succeeded")
         {
-            return new Result<T>(true, data, message);
+            return new SuccessResponse<T>(data, HttpStatusCode.OK, message);
         }
 
-        public static Result<T> Failure(string message)
+        public static APIResponse<T> Failure(string message, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         {
-            return new Result<T>(false, default(T), message);
-        }
-
-        public static Task<Result<T>> SuccessAsync(T data, string message)
-        {
-            return Task.FromResult(Success(data, message));
-        }
-
-        public static Task<Result<T>> FailureAsync(string message)
-        {
-            return Task.FromResult(Failure(message));
+            return new ErrorResponse<T>(default, statusCode, message);
         }
     }
 
+    public class SuccessResponse<T> : APIResponse<T>
+    {
+        public SuccessResponse(T data, HttpStatusCode statusCode, string message)
+            : base(true, data, statusCode, message) { }
+    }
+
+    // Data is not necessary in error
+    
+    public class ErrorResponse<T> : APIResponse<T>
+    {
+        public ErrorResponse(T data, HttpStatusCode statusCode, string message)
+            : base(false, data, statusCode, message) { }
+    }
 }

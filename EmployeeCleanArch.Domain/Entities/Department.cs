@@ -1,8 +1,9 @@
 ﻿using EmployeeCleanArch.Domain.Common;
+using EmployeeCleanArch.Domain.Common.Interfaces;
 
 namespace EmployeeCleanArch.Domain.Entities
 {
-    public class Department : BaseAuditableEntity<long>
+    public class Department : BaseAuditableEntity<long>,IHasIsDeleted
     {
         public string DepartmentName { get; set; }
         public string? Location { get; set; }

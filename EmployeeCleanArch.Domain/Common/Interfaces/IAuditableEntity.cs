@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+﻿using EmployeeCleanArch.Domain.Common.Interfaces.EmployeeCleanArch.Domain.Common.Interfaces;
 
 namespace EmployeeCleanArch.Domain.Common.Interfaces
 {

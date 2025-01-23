@@ -1,24 +1,36 @@
+using EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartment;
+using EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments;
+using EmployeeCleanArch.Application.Interfaces.Repositories;
+using EmployeeCleanArch.Domain.Entities;
 using EmployeeCleanArch.Infrastructure.Data;
+using EmployeeCleanArch.Peristence.Repositories;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Get connection string from appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Register AppDbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IGenericRepository<Department>, GenericRepository<Department>>();
+builder.Services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddValidatorsFromAssemblyContaining<AddNewDepartmentValidator>();
+
+
+builder.Services.AddMediatR(cfg => 
+    cfg.RegisterServicesFromAssembly(typeof(GetAllDepartmentsQueryHandler).Assembly));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

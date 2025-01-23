@@ -1,5 +1,4 @@
-﻿using EmployeeCleanArch.Domain.Common.Interfaces;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using EmployeeCleanArch.Domain.Common.Interfaces.EmployeeCleanArch.Domain.Common.Interfaces;
 
 namespace EmployeeCleanArch.Domain.Common
 {
