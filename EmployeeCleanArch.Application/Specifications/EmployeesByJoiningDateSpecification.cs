@@ -1,10 +1,5 @@
 ﻿using Ardalis.Specification;
 using EmployeeCleanArch.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EmployeeCleanArch.Domain.Specifications
 {
@@ -13,6 +8,7 @@ namespace EmployeeCleanArch.Domain.Specifications
         public EmployeesByJoiningDateSpecification(DateTime joiningDateFloor, DateTime joiningDateCeiling)
         {
             Query.Where(c => c.IsDeleted == false && c.DateOfJoining >= joiningDateFloor && c.DateOfJoining <= joiningDateCeiling);
+            //Query.Select(x => x.Adapt(new GetEmployeeDTO()));
         }
     }
 }

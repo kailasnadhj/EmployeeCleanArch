@@ -1,21 +1,27 @@
 ﻿using EmployeeCleanArch.Application.Common.APIResponse;
+using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using EmployeeCleanArch.Domain.Specifications;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using FluentValidation;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesbyNationality
 {
-    public record GetEmployeesByNationalityQuery(string nationality) : IRequest<APIResponse<IEnumerable<Employee>>>;
+    //public record GetEmployeesByNationalityQuery(string nationality) : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    public class GetEmployeesByNationalityQuery : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>
+    {
+        public string nationality { get; set; }
 
-    public class GetEmployeesByNationalityQueryHandler : IRequestHandler<GetEmployeesByNationalityQuery, APIResponse<IEnumerable<Employee>>>
+        public GetEmployeesByNationalityQuery(string nationality)
+        {
+            this.nationality = nationality;
+        }
+    }
+
+    public class GetEmployeesByNationalityQueryHandler : IRequestHandler<GetEmployeesByNationalityQuery, APIResponse<IEnumerable<GetEmployeeDTO>>>
     {
         private readonly IGenericRepository<Employee> _repository;
         private readonly IValidator<GetEmployeesByNationalityQuery> _validator;
@@ -26,21 +32,22 @@ namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesb
             _validator = validator;
         }
 
-        public async Task<APIResponse<IEnumerable<Employee>>> Handle(GetEmployeesByNationalityQuery request, CancellationToken cancellationToken)
+        public async Task<APIResponse<IEnumerable<GetEmployeeDTO>>> Handle(GetEmployeesByNationalityQuery request, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(request);
             var spec = new EmployeesByNationalitySpecification(request.nationality);
-            var employees = await _repository.GetAllAsync(spec, cancellationToken);
+            var employeesList = await _repository.GetAllAsync(spec, cancellationToken);
+            var employees = employeesList.Adapt<IEnumerable<GetEmployeeDTO>>();
 
 
             //var employees = await _repository.GetAllAsync();
 
-            if (employees != null && employees.Any())
+            if (employees != null)
             {
-                return APIResponse<IEnumerable<Employee>>.Success(employees, "Employees with the nationality fetched successfully.");
+                return APIResponse<IEnumerable<GetEmployeeDTO>>.Success(employees, "Employees with the nationality fetched successfully.");
             }
 
-            return APIResponse<IEnumerable<Employee>>.Failure("No employees found for the entered nationality.", HttpStatusCode.NotFound);
+            return APIResponse<IEnumerable<GetEmployeeDTO>>.Failure("No employees found for the entered nationality.", HttpStatusCode.NotFound);
         }
     }
 }

@@ -7,7 +7,16 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Commands.PurgeDepartment
 {
-    public record PurgeDepartmentCommand(long id) : IRequest<APIResponse<Department>>;
+    //public record PurgeDepartmentCommand(long id) : IRequest<APIResponse<Department>>;
+    public class PurgeDepartmentCommand : IRequest<APIResponse<Department>>
+    {
+        public long id { get; set; }
+
+        public PurgeDepartmentCommand(long id)
+        {
+            this.id = id;
+        }
+    }
 
     public class PurgeDepartmentCommandHandler : IRequestHandler<PurgeDepartmentCommand, APIResponse<Department>>
     {

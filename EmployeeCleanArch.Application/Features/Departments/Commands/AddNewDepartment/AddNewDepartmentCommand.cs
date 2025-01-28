@@ -8,8 +8,16 @@ using MediatR;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepartment
 {
-    //We use class
-    public record AddNewDepartmentCommand(CreateDepartmentDTO departmentDTO) : IRequest<APIResponse<Department>>;
+    //public record AddNewDepartmentCommand(CreateDepartmentDTO departmentDTO) : IRequest<APIResponse<Department>>;
+    public class AddNewDepartmentCommand : IRequest<APIResponse<Department>>
+    {
+        public CreateDepartmentDTO departmentDTO { get; set; }
+
+        public AddNewDepartmentCommand(CreateDepartmentDTO departmentDTO)
+        {
+            this.departmentDTO = departmentDTO;
+        }
+    }
 
     public class AddNewDepartmentCommandHandler : IRequestHandler<AddNewDepartmentCommand, APIResponse<Department>>
     {

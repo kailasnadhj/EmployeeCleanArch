@@ -1,4 +1,5 @@
 ﻿using EmployeeCleanArch.Application.Common.APIResponse;
+using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using MediatR;
@@ -6,7 +7,17 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeeByDepartment
 {
-    public record GetEmployeeByDepartmentQuery(long departmentId) : IRequest<APIResponse<IEnumerable<Employee>>>;
+    // Using record instead of class
+    //public record GetEmployeeByDepartmentQuery(long departmentId) : IRequest<APIResponse<IEnumerable<Employee>>>;
+    public class GetEmployeeByDepartmentQuery : IRequest<APIResponse<IEnumerable<Employee>>>
+    {
+        public long departmentId { get; set; }
+
+        public GetEmployeeByDepartmentQuery(long departmentId)
+        {
+            this.departmentId = departmentId;
+        }
+    }
 
     public class GetEmployeeByDepartmentQueryHandler : IRequestHandler<GetEmployeeByDepartmentQuery, APIResponse<IEnumerable<Employee>>>
     {

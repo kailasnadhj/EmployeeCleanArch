@@ -6,7 +6,16 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetDepartmentById
 {
-    public record GetDepartmentByIdQuery(long id) : IRequest<APIResponse<Department>>;
+    //public record GetDepartmentByIdQuery(long id) : IRequest<APIResponse<Department>>;
+    public class GetDepartmentByIdQuery : IRequest<APIResponse<Department>>
+    {
+        public long id { get; set; }
+
+        public GetDepartmentByIdQuery(long id)
+        {
+            this.id = id;
+        }
+    }
 
     public class GetDepartmentByIdQueryHandler : IRequestHandler<GetDepartmentByIdQuery, APIResponse<Department>>
     {

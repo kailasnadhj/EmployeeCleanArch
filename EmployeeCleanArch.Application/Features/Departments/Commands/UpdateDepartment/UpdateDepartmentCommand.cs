@@ -9,7 +9,29 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Commands.UpdateDepartment
 {
-    public record UpdateDepartmentCommand(UpdateDepartmentDTO departmentDTO, int id) : IRequest<APIResponse<Department>>;
+    //public record UpdateDepartmentCommand(UpdateDepartmentDTO departmentDTO, int id) : IRequest<APIResponse<Department>>;
+    public class UpdateDepartmentCommand : IRequest<APIResponse<Department>>
+    {
+        public UpdateDepartmentDTO departmentDTO { get; set; }
+        public long id;
+
+        public UpdateDepartmentCommand(UpdateDepartmentDTO departmentDTO, long id)
+        {
+            this.departmentDTO = departmentDTO;
+            this.id = id;
+        }
+    }
+    public class UpdateEmployeeCommand : IRequest<APIResponse<Employee>>
+    {
+        public UpdateEmployeeDTO employeeDTO { get; set; }
+        public long id;
+
+        public UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id)
+        {
+            this.employeeDTO = employeeDTO;
+            this.id = id;
+        }
+    }
 
     public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCommand, APIResponse<Department>>
     {

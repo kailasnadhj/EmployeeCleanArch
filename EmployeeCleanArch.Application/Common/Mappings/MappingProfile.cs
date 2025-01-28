@@ -9,10 +9,13 @@ namespace MyCleanApp.Application.Mappings
     {
         public static void ConfigureMappings()
         {
-            TypeAdapterConfig<CreateDepartmentDTO, Department>.NewConfig();
+            //TypeAdapterConfig<CreateDepartmentDTO, Department>.NewConfig();
             TypeAdapterConfig<UpdateDepartmentDTO, Department>.NewConfig();
             TypeAdapterConfig<CreateEmployeeDTO, Employee>.NewConfig();
             TypeAdapterConfig<UpdateEmployeeDTO, Employee>.NewConfig();
+            //TypeAdapterConfig<GetEmployeeDTO, Employee>.NewConfig();
+            TypeAdapterConfig<Employee, GetEmployeeDTO>.NewConfig()
+                .Map(dest => dest.Gender, src => src.Gender.ToString().ToLower());
         }
     }
 }

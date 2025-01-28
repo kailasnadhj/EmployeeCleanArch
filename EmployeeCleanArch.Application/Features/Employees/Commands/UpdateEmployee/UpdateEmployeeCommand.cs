@@ -2,6 +2,7 @@
 using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
+using EmployeeCleanArch.Domain.Enums;
 using FluentValidation;
 using Mapster;
 using MediatR;
@@ -9,7 +10,18 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.UpdateEmployee
 {
-    public record UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id) : IRequest<APIResponse<Employee>>;
+    //public record UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id) : IRequest<APIResponse<Employee>>;
+    public class UpdateEmployeeCommand : IRequest<APIResponse<Employee>>
+    {
+        public UpdateEmployeeDTO employeeDTO { get; set; }
+        public long id;
+
+        public UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id)
+        {
+            this.employeeDTO = employeeDTO;
+            this.id = id;
+        }
+    }
 
     public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, APIResponse<Employee>>
     {
@@ -34,6 +46,13 @@ namespace EmployeeCleanArch.Application.Features.Employees.Commands.UpdateEmploy
             }
 
             request.employeeDTO.Adapt(employeeEntity);
+
+            if (!Enum.TryParse<Genders>(request.employeeDTO.Gender, true, out var genderEnum))
+            {
+                return APIResponse<Employee>.Failure("Invalid gender value. Must be 'male', 'female', or 'other'.", HttpStatusCode.BadRequest);
+            }
+
+            employeeEntity.Gender = genderEnum;
 
             employeeEntity.CreatedDate = employeeEntity.CreatedDate ?? DateTime.UtcNow;
 

@@ -32,8 +32,9 @@ namespace EmployeeCleanArch.Application.Features.Departments.Commands.AddNewDepa
                 .LessThan(DateTime.Today).WithMessage("Date of birth must be in the past.");
 
             RuleFor(x => x.Gender)
-                .NotEmpty().WithMessage("Gender is required.")
-                .Must(gender => gender == "male" || gender == "female" || gender == "other").WithMessage("Gender must be either 'male', 'female', or 'other'.");
+                .Must(gender => gender == "male" || gender == "female" || gender == "other")
+                .WithMessage("Gender must be 'male', 'female', or 'other'.")
+                .NotEmpty().WithMessage("Gender is required.");
 
             RuleFor(x => x.Nationality)
                 .NotEmpty().WithMessage("Nationality is required.")

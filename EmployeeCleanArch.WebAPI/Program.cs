@@ -6,8 +6,21 @@ using EmployeeCleanArch.Infrastructure.Data;
 using EmployeeCleanArch.Peristence.Repositories;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var logDirectory = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "CleanArch.Infrastructure", "logs");
+
+var solutionDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..")); // 4 levels up from the bin directory
+var logDirectory = Path.Combine(solutionDirectory, "CleanArch.Infrastructure", "logs");
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console() // Logs to the console
+    .WriteTo.File(Path.Combine(logDirectory, "app-log.txt"), rollingInterval: RollingInterval.Day) // Logs to file
+    .CreateLogger();
+
+builder.Logging.AddSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -25,11 +38,12 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<AddNewDepartmentValidator>();
 
-
 builder.Services.AddMediatR(cfg => 
     cfg.RegisterServicesFromAssembly(typeof(GetAllDepartmentsQueryHandler).Assembly));
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
