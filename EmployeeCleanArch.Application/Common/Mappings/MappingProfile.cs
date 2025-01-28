@@ -9,7 +9,7 @@ namespace MyCleanApp.Application.Mappings
     {
         public static void ConfigureMappings()
         {
-            TypeAdapterConfig<CreateDepartmentDTO, Department>.NewConfig();
+            //TypeAdapterConfig<CreateDepartmentDTO, Department>.NewConfig();
             TypeAdapterConfig<UpdateDepartmentDTO, Department>.NewConfig();
             TypeAdapterConfig<CreateEmployeeDTO, Employee>.NewConfig();
             TypeAdapterConfig<UpdateEmployeeDTO, Employee>.NewConfig();

@@ -10,7 +10,18 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.UpdateEmployee
 {
-    public record UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id) : IRequest<APIResponse<Employee>>;
+    //public record UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id) : IRequest<APIResponse<Employee>>;
+    public class UpdateEmployeeCommand : IRequest<APIResponse<Employee>>
+    {
+        public UpdateEmployeeDTO employeeDTO { get; set; }
+        public long id;
+
+        public UpdateEmployeeCommand(UpdateEmployeeDTO employeeDTO, long id)
+        {
+            this.employeeDTO = employeeDTO;
+            this.id = id;
+        }
+    }
 
     public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, APIResponse<Employee>>
     {

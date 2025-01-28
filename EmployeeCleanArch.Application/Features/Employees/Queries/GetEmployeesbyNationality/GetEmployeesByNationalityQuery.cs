@@ -10,7 +10,16 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesbyNationality
 {
-    public record GetEmployeesByNationalityQuery(string nationality) : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    //public record GetEmployeesByNationalityQuery(string nationality) : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    public class GetEmployeesByNationalityQuery : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>
+    {
+        public string nationality { get; set; }
+
+        public GetEmployeesByNationalityQuery(string nationality)
+        {
+            this.nationality = nationality;
+        }
+    }
 
     public class GetEmployeesByNationalityQueryHandler : IRequestHandler<GetEmployeesByNationalityQuery, APIResponse<IEnumerable<GetEmployeeDTO>>>
     {
@@ -33,7 +42,7 @@ namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesb
 
             //var employees = await _repository.GetAllAsync();
 
-            if (employees != null && employees.Any())
+            if (employees != null)
             {
                 return APIResponse<IEnumerable<GetEmployeeDTO>>.Success(employees, "Employees with the nationality fetched successfully.");
             }

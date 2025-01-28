@@ -10,7 +10,17 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.AddNewEmployee
 {
-    public record AddNewEmployeeCommand(CreateEmployeeDTO employeeDTO) : IRequest<APIResponse<Employee>>;
+    //public record AddNewEmployeeCommand(CreateEmployeeDTO employeeDTO) : IRequest<APIResponse<Employee>>;
+    public class AddNewEmployeeCommand : IRequest<APIResponse<Employee>>
+    {
+        public CreateEmployeeDTO employeeDTO { get; set; }
+
+        public AddNewEmployeeCommand(CreateEmployeeDTO employeeDTO)
+        {
+            this.employeeDTO = employeeDTO;
+        }
+    }
+
 
     public class AddNewEmployeeCommandHandler : IRequestHandler<AddNewEmployeeCommand, APIResponse<Employee>>
     {

@@ -7,7 +7,16 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Commands.DeleteDepartment
 {
-    public record DeleteDepartmentCommand(int id) : IRequest<APIResponse<Department>>;
+    //public record DeleteDepartmentCommand(int id) : IRequest<APIResponse<Department>>;
+    public class DeleteDepartmentCommand : IRequest<APIResponse<Department>>
+    {
+        public long id { get; set; }
+
+        public DeleteDepartmentCommand(long id)
+        {
+            this.id = id;
+        }
+    }
 
     public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, APIResponse<Department>>
     {

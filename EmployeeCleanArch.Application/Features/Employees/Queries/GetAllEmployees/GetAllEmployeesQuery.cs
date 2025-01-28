@@ -9,7 +9,13 @@ using EmployeeCleanArch.Application.DTOs;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetAllEmployees
 {
-    public record GetAllEmployeesQuery() : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    // Using record instead of class for implementation
+    //public record GetAllEmployeesQuery() : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    public class GetAllEmployeesQuery : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>
+    {
+        public GetAllEmployeesQuery() { }
+    }
+
 
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery, APIResponse<IEnumerable<GetEmployeeDTO>>>
     {

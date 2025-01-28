@@ -1,13 +1,17 @@
-﻿using MediatR;
-using EmployeeCleanArch.Domain.Entities;
+﻿using EmployeeCleanArch.Application.Common.APIResponse;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
-using EmployeeCleanArch.Application.Common.APIResponse;
-using System.Net;
+using EmployeeCleanArch.Domain.Entities;
 using EmployeeCleanArch.Domain.Specifications;
+using MediatR;
+using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Departments.Queries.GetAllDepartments
 {
-    public record GetAllDepartmentsQuery() : IRequest<APIResponse<IEnumerable<Department>>>;
+    //public record GetAllDepartmentsQuery() : IRequest<APIResponse<IEnumerable<Department>>>;
+    public class GetAllDepartmentsQuery : IRequest<APIResponse<IEnumerable<Department>>>
+    {
+        public GetAllDepartmentsQuery() { }
+    }
 
     public class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQuery, APIResponse<IEnumerable<Department>>>
     {

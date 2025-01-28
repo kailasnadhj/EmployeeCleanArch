@@ -8,7 +8,16 @@ using Ardalis.Specification;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeeById
 {
-    public record GetEmployeeByIdQuery(long id) : IRequest<APIResponse<Employee>>;
+    //public record GetEmployeeByIdQuery(long id) : IRequest<APIResponse<Employee>>;
+    public class GetEmployeeByIdQuery : IRequest<APIResponse<Employee>>
+    {
+        public long id { get; set; }
+
+        public GetEmployeeByIdQuery(long id)
+        {
+            this.id = id;
+        }
+    }
 
     public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, APIResponse<Employee>>
     {

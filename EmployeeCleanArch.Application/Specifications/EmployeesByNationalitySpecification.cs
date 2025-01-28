@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Domain.Entities;
 
 namespace EmployeeCleanArch.Domain.Specifications

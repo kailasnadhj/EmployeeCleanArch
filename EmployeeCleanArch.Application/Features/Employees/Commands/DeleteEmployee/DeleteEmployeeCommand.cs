@@ -1,4 +1,5 @@
 ﻿using EmployeeCleanArch.Application.Common.APIResponse;
+using EmployeeCleanArch.Application.DTOs;
 using EmployeeCleanArch.Application.Interfaces.Repositories;
 using EmployeeCleanArch.Domain.Entities;
 using FluentValidation;
@@ -7,7 +8,17 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Commands.DeleteEmployee
 {
-    public record DeleteEmployeeCommand(long id) : IRequest<APIResponse<Employee>>;
+    //public record DeleteEmployeeCommand(long id) : IRequest<APIResponse<Employee>>;
+    public class DeleteEmployeeCommand : IRequest<APIResponse<Employee>>
+    {
+        public long id { get; set; }
+
+        public DeleteEmployeeCommand(long id)
+        {
+            this.id = id;
+        }
+    }
+
 
     public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, APIResponse<Employee>>
     {

@@ -10,7 +10,18 @@ using System.Net;
 
 namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesbyJoiningDate
 {
-    public record GetEmployeesByJoiningDateQuery(DateTime joiningDateFloor,DateTime joiningDateCeiling) : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    //public record GetEmployeesByJoiningDateQuery(DateTime joiningDateFloor,DateTime joiningDateCeiling) : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>;
+    public class GetEmployeesByJoiningDateQuery : IRequest<APIResponse<IEnumerable<GetEmployeeDTO>>>
+    {
+        public DateTime joiningDateFloor { get; set; }
+        public DateTime joiningDateCeiling { get; set; }
+
+        public GetEmployeesByJoiningDateQuery(DateTime joiningDateFloor, DateTime joiningDateCeiling)
+        {
+            this.joiningDateFloor = joiningDateFloor;
+            this.joiningDateCeiling = joiningDateCeiling;
+        }
+    }
 
     public class GetEmployeesByJoiningDateQueryHandler : IRequestHandler<GetEmployeesByJoiningDateQuery, APIResponse<IEnumerable<GetEmployeeDTO>>>
     {
@@ -33,7 +44,7 @@ namespace EmployeeCleanArch.Application.Features.Employees.Queries.GetEmployeesb
 
             //var employees = await _repository.GetAllAsync();
 
-            if (employees != null && employees.Any())
+            if (employees != null)
             {
                 return APIResponse<IEnumerable<GetEmployeeDTO>>.Success(employees, "Employees within the filter range fetched successfully.");
             }

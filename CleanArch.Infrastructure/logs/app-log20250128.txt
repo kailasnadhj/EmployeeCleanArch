@@ -1,0 +1,154 @@
+2025-01-28 10:24:02.634 +05:30 [INF] Now listening on: https://localhost:7010
+2025-01-28 10:24:02.668 +05:30 [INF] Now listening on: http://localhost:5261
+2025-01-28 10:24:02.676 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-28 10:24:02.681 +05:30 [INF] Hosting environment: Development
+2025-01-28 10:24:02.684 +05:30 [INF] Content root path: C:\Users\kailas.j\Desktop\EmployeeManagement\EmployeeCleanArch\EmployeeCleanArch.WebAPI
+2025-01-28 10:24:03.355 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/swagger/index.html - null null
+2025-01-28 10:24:03.879 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/swagger/index.html - 200 null text/html;charset=utf-8 531.8235ms
+2025-01-28 10:24:03.932 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-28 10:24:03.946 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/_framework/aspnetcore-browser-refresh.js - 200 13784 application/javascript; charset=utf-8 13.812ms
+2025-01-28 10:24:03.967 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/_vs/browserLink - null null
+2025-01-28 10:24:04.039 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/_vs/browserLink - 200 null text/javascript; charset=UTF-8 72.3448ms
+2025-01-28 10:24:04.239 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/swagger/v1/swagger.json - null null
+2025-01-28 10:24:04.330 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 91.5615ms
+2025-01-28 10:26:14.465 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Department/ViewAll - null null
+2025-01-28 10:26:14.491 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.DepartmentController.GetAllDepartmentsAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 10:26:14.554 +05:30 [INF] Route matched with {action = "GetAllDepartments", controller = "Department"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllDepartmentsAsync() on controller EmployeeCleanArch.WebAPI.Controllers.DepartmentController (EmployeeCleanArch.WebAPI).
+2025-01-28 10:26:14.568 +05:30 [INF] Attempting to read all departments
+2025-01-28 10:26:17.630 +05:30 [INF] Executed DbCommand (88ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[CreatedBy], [d].[CreatedDate], [d].[DepartmentName], [d].[IsDeleted], [d].[Location], [d].[MaxCapacity], [d].[Status], [d].[UpdatedBy], [d].[UpdatedDate]
+FROM [Departments] AS [d]
+WHERE [d].[IsDeleted] = CAST(0 AS bit)
+2025-01-28 10:26:17.801 +05:30 [ERR] There are no departments to fetch
+2025-01-28 10:26:17.821 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Domain.Entities.Department, EmployeeCleanArch.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 10:26:17.903 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.DepartmentController.GetAllDepartmentsAsync (EmployeeCleanArch.WebAPI) in 3332.9448ms
+2025-01-28 10:26:17.908 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.DepartmentController.GetAllDepartmentsAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 10:26:17.927 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Department/ViewAll - 200 null application/json; charset=utf-8 3458.7796ms
+2025-01-28 10:26:19.635 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/ViewAll - null null
+2025-01-28 10:26:19.644 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetAllEmployeesAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 10:26:19.658 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployeesAsync() on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 10:26:19.822 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2025-01-28 10:26:20.029 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 10:26:20.077 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetAllEmployeesAsync (EmployeeCleanArch.WebAPI) in 413.7275ms
+2025-01-28 10:26:20.081 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetAllEmployeesAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 10:26:20.083 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/ViewAll - 200 null application/json; charset=utf-8 450.96ms
+2025-01-28 12:43:33.752 +05:30 [INF] Now listening on: https://localhost:7010
+2025-01-28 12:43:33.797 +05:30 [INF] Now listening on: http://localhost:5261
+2025-01-28 12:43:33.808 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-28 12:43:33.815 +05:30 [INF] Hosting environment: Development
+2025-01-28 12:43:33.819 +05:30 [INF] Content root path: C:\Users\kailas.j\Desktop\EmployeeManagement\EmployeeCleanArch\EmployeeCleanArch.WebAPI
+2025-01-28 12:43:34.369 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/swagger/index.html - null null
+2025-01-28 12:43:34.868 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/swagger/index.html - 200 null text/html;charset=utf-8 527.8802ms
+2025-01-28 12:43:34.937 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-28 12:43:34.970 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/_framework/aspnetcore-browser-refresh.js - 200 13784 application/javascript; charset=utf-8 33.2357ms
+2025-01-28 12:43:35.005 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/_vs/browserLink - null null
+2025-01-28 12:43:35.108 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/_vs/browserLink - 200 null text/javascript; charset=UTF-8 103.3647ms
+2025-01-28 12:43:35.371 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/swagger/v1/swagger.json - null null
+2025-01-28 12:43:35.557 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 186.6156ms
+2025-01-28 12:44:21.722 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/den - null null
+2025-01-28 12:44:21.767 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:21.836 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:21.886 +05:30 [INF] Attempting to read employees for the given search key: 'den'
+2025-01-28 12:44:27.039 +05:30 [INF] Executed DbCommand (130ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:27.669 +05:30 [ERR] There are no employees found for the search key: 'den'
+2025-01-28 12:44:27.702 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:27.833 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 5987.4887ms
+2025-01-28 12:44:27.839 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:27.856 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/den - 200 null application/json; charset=utf-8 6133.8887ms
+2025-01-28 12:44:33.323 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/ka - null null
+2025-01-28 12:44:33.334 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:33.337 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:33.342 +05:30 [INF] Attempting to read employees for the given search key: 'ka'
+2025-01-28 12:44:33.525 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:33.531 +05:30 [ERR] There are no employees found for the search key: 'ka'
+2025-01-28 12:44:33.533 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:33.536 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 195.5814ms
+2025-01-28 12:44:33.539 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:33.541 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/ka - 200 null application/json; charset=utf-8 218.1792ms
+2025-01-28 12:44:39.426 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/jo - null null
+2025-01-28 12:44:39.450 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:39.455 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:39.474 +05:30 [INF] Attempting to read employees for the given search key: 'jo'
+2025-01-28 12:44:39.537 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:39.548 +05:30 [ERR] There are no employees found for the search key: 'jo'
+2025-01-28 12:44:39.552 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:39.556 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 94.4241ms
+2025-01-28 12:44:39.560 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:39.566 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/jo - 200 null application/json; charset=utf-8 142.9781ms
+2025-01-28 12:44:45.964 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/bob - null null
+2025-01-28 12:44:45.968 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:45.975 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:45.982 +05:30 [INF] Attempting to read employees for the given search key: 'bob'
+2025-01-28 12:44:46.001 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:46.005 +05:30 [ERR] There are no employees found for the search key: 'bob'
+2025-01-28 12:44:46.006 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:46.008 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 26.6683ms
+2025-01-28 12:44:46.015 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:46.016 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/bob - 200 null application/json; charset=utf-8 52.3967ms
+2025-01-28 12:44:51.158 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/uk - null null
+2025-01-28 12:44:51.167 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:51.170 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:51.179 +05:30 [INF] Attempting to read employees for the given search key: 'uk'
+2025-01-28 12:44:51.196 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:51.202 +05:30 [ERR] There are no employees found for the search key: 'uk'
+2025-01-28 12:44:51.205 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:51.208 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 29.7048ms
+2025-01-28 12:44:51.216 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:51.218 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/uk - 200 null application/json; charset=utf-8 60.5806ms
+2025-01-28 12:44:57.158 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/zz - null null
+2025-01-28 12:44:57.169 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:57.171 +05:30 [INF] Route matched with {action = "SearchEmployeesByName", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchEmployeesByName(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:44:57.178 +05:30 [INF] Attempting to read employees for the given search key: 'zz'
+2025-01-28 12:44:57.196 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__searchKey_0_contains='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[FirstName] LIKE @__searchKey_0_contains ESCAPE N'\' OR [e].[LastName] LIKE @__searchKey_0_contains ESCAPE N'\'
+2025-01-28 12:44:57.199 +05:30 [ERR] There are no employees found for the search key: 'zz'
+2025-01-28 12:44:57.200 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:44:57.201 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI) in 24.1754ms
+2025-01-28 12:44:57.204 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.SearchEmployeesByName (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:44:57.206 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/SearchEmployee/zz - 200 null application/json; charset=utf-8 50.0583ms
+2025-01-28 12:45:11.650 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/ViewByNationality/American - null null
+2025-01-28 12:45:11.665 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:45:11.684 +05:30 [INF] Route matched with {action = "GetEmployeeByNationality", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetEmployeeByNationalityAsync(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:45:11.692 +05:30 [INF] Attempting to read employees with nationality: American
+2025-01-28 12:45:11.747 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__nationality_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit) AND [e].[Nationality] = @__nationality_0
+2025-01-28 12:45:11.752 +05:30 [ERR] There are no employees with nationality American
+2025-01-28 12:45:11.754 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:45:11.757 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI) in 68.4471ms
+2025-01-28 12:45:11.762 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:45:11.764 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/ViewByNationality/American - 200 null application/json; charset=utf-8 114.1895ms
+2025-01-28 12:45:19.788 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7010/api/Employee/ViewByNationality/Venezuelan - null null
+2025-01-28 12:45:19.802 +05:30 [INF] Executing endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:45:19.805 +05:30 [INF] Route matched with {action = "GetEmployeeByNationality", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetEmployeeByNationalityAsync(System.String) on controller EmployeeCleanArch.WebAPI.Controllers.EmployeeController (EmployeeCleanArch.WebAPI).
+2025-01-28 12:45:19.820 +05:30 [INF] Attempting to read employees with nationality: Venezuelan
+2025-01-28 12:45:19.840 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__nationality_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[DateOfBirth], [e].[DateOfDeparture], [e].[DateOfJoining], [e].[DepartmentId], [e].[Designation], [e].[Email], [e].[FirstName], [e].[Gender], [e].[IsActive], [e].[IsDeleted], [e].[LastName], [e].[Nationality], [e].[PhoneNumber], [e].[Salary], [e].[UpdatedBy], [e].[UpdatedDate]
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit) AND [e].[Nationality] = @__nationality_0
+2025-01-28 12:45:19.850 +05:30 [ERR] There are no employees with nationality Venezuelan
+2025-01-28 12:45:19.853 +05:30 [INF] Executing OkObjectResult, writing value of type 'EmployeeCleanArch.Application.Common.APIResponse.SuccessResponse`1[[System.Collections.Generic.IEnumerable`1[[EmployeeCleanArch.Application.DTOs.GetEmployeeDTO, EmployeeCleanArch.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-28 12:45:19.855 +05:30 [INF] Executed action EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI) in 36.2932ms
+2025-01-28 12:45:19.858 +05:30 [INF] Executed endpoint 'EmployeeCleanArch.WebAPI.Controllers.EmployeeController.GetEmployeeByNationalityAsync (EmployeeCleanArch.WebAPI)'
+2025-01-28 12:45:19.861 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7010/api/Employee/ViewByNationality/Venezuelan - 200 null application/json; charset=utf-8 72.785ms
